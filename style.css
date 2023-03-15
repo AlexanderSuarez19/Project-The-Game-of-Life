@@ -43,3 +43,9 @@ td.live {
   background-color: red;
   border-radius: 10px;
 }
+
+#counter {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
