@@ -3,6 +3,9 @@ let cols = 50;
 let generation = 0;
 let playing = false;
 const generationCounter = document.getElementById("counter");
+const startButton = document.getElementById("start");
+const randomButton = document.getElementById("random");
+const restartButton = document.getElementById("restart");
 
 let grid = new Array(rows);
 let nextGrid = new Array(rows);
@@ -98,16 +101,26 @@ function updateView() {
 }
 
 function setupControlButtons() {
-  // button to start
-  let startButton = document.getElementById("start");
+  // Start button
   startButton.onclick = startButtonHandler;
   //Random button
-  let randomButton = document.getElementById("random");
   randomButton.onclick = randomButtonHandler;
+  //Restart button
+  restartButton.onclick = restartButtonHandler;
+}
+
+function restartButtonHandler() {
+  /*Clean function will go here*/
+  startButton.innerHTML = "Start";
+  playing = false;
+  generation = 0;
+  generationCounter.innerHTML = "";
+  clearTimeout(timer);
 }
 
 function randomButtonHandler() {
   if (!playing) {
+    /*Clear function will be here */
     for (var i = 0; i < rows; i++) {
       for (var j = 0; j < cols; j++) {
         var isLive = Math.round(Math.random());

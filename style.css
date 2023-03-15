@@ -29,7 +29,8 @@ span {
 }
 
 #start,
-#random {
+#random,
+#restart {
   margin: 0px 5px;
   padding: 5px;
   border-radius: 5px;
