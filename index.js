@@ -1,7 +1,8 @@
 let rows = 50;
 let cols = 50;
-
+let generation = 0;
 let playing = false;
+const generationCounter = document.getElementById("counter");
 
 let grid = new Array(rows);
 let nextGrid = new Array(rows);
@@ -82,6 +83,7 @@ function cellClickHandler() {
 }
 
 function updateView() {
+  generation++;
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
       let cell = document.getElementById(i + "_" + j);
@@ -92,6 +94,7 @@ function updateView() {
       }
     }
   }
+  generationCounter.innerHTML = `Current generation: ${generation}`;
 }
 
 function setupControlButtons() {
