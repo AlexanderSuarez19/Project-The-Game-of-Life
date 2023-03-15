@@ -98,6 +98,24 @@ function setupControlButtons() {
   // button to start
   let startButton = document.getElementById("start");
   startButton.onclick = startButtonHandler;
+  //Random button
+  let randomButton = document.getElementById("random");
+  randomButton.onclick = randomButtonHandler;
+}
+
+function randomButtonHandler() {
+  if (!playing) {
+    for (var i = 0; i < rows; i++) {
+      for (var j = 0; j < cols; j++) {
+        var isLive = Math.round(Math.random());
+        if (isLive == 1) {
+          var cell = document.getElementById(i + "_" + j);
+          cell.setAttribute("class", "live");
+          grid[i][j] = 1;
+        }
+      }
+    }
+  }
 }
 
 // start/pause button handler

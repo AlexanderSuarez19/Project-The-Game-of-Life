@@ -3,7 +3,13 @@ body {
 }
 
 #gridContainer {
+  display: flex;
+  justify-content: center;
   padding-bottom: 10px;
+}
+.controls {
+  display: flex;
+  justify-content: center;
 }
 
 table {
@@ -23,8 +29,8 @@ span {
 }
 
 #start,
-#clear,
 #random {
+  margin: 0px 5px;
   padding: 5px;
   border-radius: 5px;
 }
