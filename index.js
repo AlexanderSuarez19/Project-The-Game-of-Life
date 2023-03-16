@@ -114,10 +114,6 @@ function setupControlButtons() {
 function clearButtonHandler() {
   console.log("Game clear");
 
-  // playing = false;
-  // startButton.innerHTML = "Start";
-  // clearTimeout(timer);
-
   let cellsList = document.getElementsByClassName("live");
 
   let cells = [];
