@@ -140,7 +140,6 @@ function restartButtonHandler() {
   generationCounter.innerHTML = "";
   clearTimeout(timer);
   initializeGrids();
-  randomButtonHandler();
 }
 
 function randomButtonHandler() {
