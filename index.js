@@ -6,6 +6,7 @@ const generationCounter = document.getElementById("counter");
 const startButton = document.getElementById("start");
 const randomButton = document.getElementById("random");
 const restartButton = document.getElementById("restart");
+const clearButton = document.getElementById('clear');
 
 let grid = new Array(rows);
 let nextGrid = new Array(rows);
@@ -107,20 +108,44 @@ function setupControlButtons() {
   randomButton.onclick = randomButtonHandler;
   //Restart button
   restartButton.onclick = restartButtonHandler;
+  //Clear button
+  clearButton.onclick = clearButtonHandler;
+
+}
+function clearButtonHandler() {
+  console.log("Game clear");
+  
+  playing = false;
+  startButton.innerHTML = "Start";    
+  clearTimeout(timer);
+  
+  let cellsList = document.getElementsByClassName("live");
+
+  let cells = [];
+  for (let i = 0; i < cellsList.length; i++) {
+      cells.push(cellsList[i]);
+  }
+  
+  for (let i = 0; i < cells.length; i++) {
+      cells[i].setAttribute("class", "dead");
+  }
+  resetGrids;
 }
 
 function restartButtonHandler() {
-  /*Clean function will go here*/
+  clearButtonHandler();
   startButton.innerHTML = "Start";
   playing = false;
   generation = 0;
   generationCounter.innerHTML = "";
   clearTimeout(timer);
+  initializeGrids();
+  randomButtonHandler();
 }
 
 function randomButtonHandler() {
   if (!playing) {
-    /*Clear function will be here */
+    clearButtonHandler();
     for (var i = 0; i < rows; i++) {
       for (var j = 0; j < cols; j++) {
         var isLive = Math.round(Math.random());
@@ -134,16 +159,21 @@ function randomButtonHandler() {
   }
 }
 
-// start/pause button handler
-function startButtonHandler() {
-  if (!playing) {
-    playing = true;
-    this.innerHTML = "Pause";
-    play();
-  } else {
-    clearTimeout(timer);
-  }
+// start/pause/continue button handler
+  function startButtonHandler() {
+    if (playing) {
+        console.log("Game paused");
+        playing = false;
+        this.innerHTML = "Continue";
+        clearTimeout(timer);
+    } else {
+        console.log("Continue");
+        playing = true;
+        this.innerHTML = "Pause";
+        play();
+    }
 }
+
 
 // run the life game
 function play() {

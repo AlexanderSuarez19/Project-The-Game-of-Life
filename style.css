@@ -1,5 +1,6 @@
 body {
   padding: 20px;
+  background-color: rgba(0, 0, 0, 0.4)
 }
 
 #gridContainer {
@@ -13,7 +14,7 @@ body {
 }
 
 table {
-  background-color: black;
+  background-color: lightgray;
   border-spacing: 0;
 }
 
@@ -34,6 +35,7 @@ span {
   margin: 0px 5px;
   padding: 5px;
   border-radius: 5px;
+  box-shadow:  2px 2px rgba(0, 0, 0, 0.8);
 }
 
 td.dead {
@@ -41,7 +43,7 @@ td.dead {
 }
 
 td.live {
-  background-color: red;
+  background-color: green;
   border-radius: 10px;
 }
 
@@ -49,4 +51,14 @@ td.live {
   margin-top: 10px;
   display: flex;
   justify-content: center;
+}
+
+#start:hover,
+#random:hover,
+#restart:hover {
+  margin: 0px 5px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow:  0.5px 0.5px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
 }
