@@ -6,7 +6,7 @@ const generationCounter = document.getElementById("counter");
 const startButton = document.getElementById("start");
 const randomButton = document.getElementById("random");
 const restartButton = document.getElementById("restart");
-const clearButton = document.getElementById('clear');
+const clearButton = document.getElementById("clear");
 
 let grid = new Array(rows);
 let nextGrid = new Array(rows);
@@ -110,26 +110,25 @@ function setupControlButtons() {
   restartButton.onclick = restartButtonHandler;
   //Clear button
   clearButton.onclick = clearButtonHandler;
-
 }
 function clearButtonHandler() {
   console.log("Game clear");
-  
-  playing = false;
-  startButton.innerHTML = "Start";    
-  clearTimeout(timer);
-  
+
+  // playing = false;
+  // startButton.innerHTML = "Start";
+  // clearTimeout(timer);
+
   let cellsList = document.getElementsByClassName("live");
 
   let cells = [];
   for (let i = 0; i < cellsList.length; i++) {
-      cells.push(cellsList[i]);
+    cells.push(cellsList[i]);
   }
-  
+
   for (let i = 0; i < cells.length; i++) {
-      cells[i].setAttribute("class", "dead");
+    cells[i].setAttribute("class", "dead");
   }
-  resetGrids;
+  resetGrids();
 }
 
 function restartButtonHandler() {
@@ -159,20 +158,19 @@ function randomButtonHandler() {
 }
 
 // start/pause/continue button handler
-  function startButtonHandler() {
-    if (playing) {
-        console.log("Game paused");
-        playing = false;
-        this.innerHTML = "Continue";
-        clearTimeout(timer);
-    } else {
-        console.log("Continue");
-        playing = true;
-        this.innerHTML = "Pause";
-        play();
-    }
+function startButtonHandler() {
+  if (playing) {
+    console.log("Game paused");
+    playing = false;
+    this.innerHTML = "Continue";
+    clearTimeout(timer);
+  } else {
+    console.log("Continue");
+    playing = true;
+    this.innerHTML = "Pause";
+    play();
+  }
 }
-
 
 // run the life game
 function play() {

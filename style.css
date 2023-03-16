@@ -1,6 +1,6 @@
 body {
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.4)
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 #gridContainer {
@@ -31,11 +31,12 @@ span {
 
 #start,
 #random,
+#clear,
 #restart {
   margin: 0px 5px;
   padding: 5px;
   border-radius: 5px;
-  box-shadow:  2px 2px rgba(0, 0, 0, 0.8);
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.8);
 }
 
 td.dead {
@@ -55,10 +56,11 @@ td.live {
 
 #start:hover,
 #random:hover,
-#restart:hover {
+#restart:hover,
+#clear:hover {
   margin: 0px 5px;
   padding: 5px;
   border-radius: 5px;
-  box-shadow:  0.5px 0.5px rgba(0, 0, 0, 0.8);
+  box-shadow: 0.5px 0.5px rgba(0, 0, 0, 0.8);
   cursor: pointer;
 }
