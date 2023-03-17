@@ -1,19 +1,20 @@
-let rows = 50;
-let cols = 50;
-let generation = 0;
-let playing = false;
+let rows = 50;//Establish the numbers of rows
+let cols = 50;//Establish the numbers of columns
+let generation = 0;//Initial state
+let playing = false;//Initial state
 const generationCounter = document.getElementById("counter");
 const startButton = document.getElementById("start");
 const randomButton = document.getElementById("random");
 const restartButton = document.getElementById("restart");
 const clearButton = document.getElementById("clear");
 
-let grid = new Array(rows);
-let nextGrid = new Array(rows);
+let grid = new Array(rows);//Actual grid
+let nextGrid = new Array(rows);//Next grid
 
 let timer;
-let reproductionTime = 100;
+let reproductionTime = 200;//time between generations
 
+//function to initializeGrids
 function initializeGrids() {
   for (let i = 0; i < rows; i++) {
     grid[i] = new Array(cols);
@@ -21,6 +22,7 @@ function initializeGrids() {
   }
 }
 
+//function to reset grids
 function resetGrids() {
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
@@ -30,6 +32,7 @@ function resetGrids() {
   }
 }
 
+//function to copy and reset grids
 function copyAndResetGrid() {
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
@@ -47,12 +50,12 @@ function initialize() {
   setupControlButtons();
 }
 
-// Lay out the board
+// Create the table
 function createTable() {
   let gridContainer = document.getElementById("gridContainer");
   if (!gridContainer) {
     // Throw error
-    console.error("Problem: No div for the drid table!");
+    console.error("ERROR THERE ARE NOT A GRID CONTAINER");
   }
   let table = document.createElement("table");
 
@@ -60,17 +63,18 @@ function createTable() {
     let tr = document.createElement("tr");
     for (let j = 0; j < cols; j++) {
       //
-      let cell = document.createElement("td");
+      let cell = document.createElement("td");//creating all the cells
       cell.setAttribute("id", i + "_" + j);
       cell.setAttribute("class", "dead");
       cell.onclick = cellClickHandler;
       tr.appendChild(cell);
     }
-    table.appendChild(tr);
+    table.appendChild(tr);//making the hierarchy
   }
-  gridContainer.appendChild(table);
+  gridContainer.appendChild(table);//making the hierarchy
 }
 
+//let the user choose the pattern
 function cellClickHandler() {
   let rowcol = this.id.split("_");
   let row = rowcol[0];
@@ -86,6 +90,7 @@ function cellClickHandler() {
   }
 }
 
+//update the view of the table and the generation count
 function updateView() {
   generation++;
   for (let i = 0; i < rows; i++) {
@@ -111,9 +116,10 @@ function setupControlButtons() {
   //Clear button
   clearButton.onclick = clearButtonHandler;
 }
+
+//How the clear button works
 function clearButtonHandler() {
   console.log("Game clear");
-
   let cellsList = document.getElementsByClassName("live");
 
   let cells = [];
@@ -127,6 +133,7 @@ function clearButtonHandler() {
   resetGrids();
 }
 
+//how the restart button works
 function restartButtonHandler() {
   clearButtonHandler();
   startButton.innerHTML = "Start";
@@ -137,6 +144,7 @@ function restartButtonHandler() {
   initializeGrids();
 }
 
+//how the random button works
 function randomButtonHandler() {
   if (!playing) {
     clearButtonHandler();
@@ -153,7 +161,7 @@ function randomButtonHandler() {
   }
 }
 
-// start/pause/continue button handler
+//start/pause/continue button handler
 function startButtonHandler() {
   if (playing) {
     console.log("Game paused");
@@ -189,6 +197,7 @@ function computeNextGen() {
   updateView();
 }
 
+//the logic of the game rules
 function applyRules(row, col) {
   let numNeighbors = countNeighbors(row, col);
   if (grid[row][col] == 1) {
